@@ -5413,6 +5413,7 @@ Section Title
     line-height: 14px;
     text-transform: uppercase;
     text-align: center;
+    display: inline-block;
 }
 
 .sec-title .sub-title.style-red {
