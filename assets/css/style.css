@@ -20437,7 +20437,7 @@ CONTACT Details
 
 @media (max-width: 767px) {
     .main-footer.footer-style-one .outer-box {
-        padding: 60px 0 25px;
+        padding: 60px 0 0;
     }
 
     .footer-about,
@@ -25228,6 +25228,10 @@ button:active {
 
     .calculator-container .tabs {
         justify-content: center;
+    }
+
+    .footer-main {
+        padding-bottom: 0px;
     }
 }
 
