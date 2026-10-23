@@ -30,11 +30,11 @@
                         <!-- Info List -->
                         <ul class="info-list">
                             <li><i class="fa-solid fa-envelope"></i>
-                                <a href="mailto:">sample@gmail.com</a>
+                                <a href="mailto:mmbfund94@gmail.com">mmbfund94@gmail.com</a>
                             </li>
                             <li>
                                 <i class="fa-solid fa-location-dot"></i>
-                                Satyasantanam Complex, GST Road, Kooteripattu, Tindivanam - 604302
+                                No. 153, 2nd Floor, Jawaharlal Nehru Street, Tindivanam – 604001
                             </li>
                         </ul>
                     </div>
@@ -119,15 +119,16 @@
                                 <div class="contact-info-box">
                                     <span class="icon lnr-icon-envelope1"></span>
                                     <span class="title">Send Email</span>
-                                    <a href="mailto:">sample@gmail.com</a>
+                                    <a href="mailto:mmbfund94@gmail.com">mmbfund94@gmail.com</a>
                                 </div>
                             </li>
-                            <li>
-                                <div class="contact-info-box">
-                                    <span class="icon lnr-icon-clock"></span>
-                                    <span class="title">Send Email</span> Mon - Sat 8:00 - 6:30, Sunday - CLOSED
-                                </div>
-                            </li>
+                           <li>
+    <div class="contact-info-box">
+        <span class="icon lnr-icon-clock"></span>
+        <span class="title">Working Hours</span>
+        Mon - Sat 8:00 AM - 6:30 PM, Sunday - CLOSED
+    </div>
+</li>
                         </ul>
                         <ul class="social-links">
                             <li><a href="#"><i class="fab fa-x-twitter"></i></a></li>
@@ -311,260 +312,155 @@
                         </div>
                     </div>
                     <div class="banner_calculator">
-                        <div class="calculator-container">
-                            <h1>Financial Calculator</h1>
+                        <div class="calculator-container screenshot-calculators">
+                            <!-- <h2 class="calculator-heading">Financial Calculator</h2> -->
                             <div class="tabs-wrapper">
-                                <div class="tabs">
-                                    <div class="tab active" data-target="#fixed-deposit">Fixed Deposit</div>
-                                    <div class="tab" data-target="#recurring-deposit">Recurring Deposit</div>
-                                    <div class="tab" data-target="#savings-deposit">Savings Deposit</div>
-                                    <div class="tab" data-target="#jewel-loan">Jewel Loan</div>
-                                    <div class="tab" data-target="#deposit-loan">Deposit Loan</div>
+                                <div class="tabs" role="tablist" aria-label="Financial calculators">
+                                    <button type="button" class="tab active" data-target="#fixed-deposit" role="tab"
+                                        aria-selected="true">Fixed Deposit Calculator</button>
+                                    <button type="button" class="tab" data-target="#recurring-deposit" role="tab"
+                                        aria-selected="false">Recurring Deposit Calculator</button>
+                                    <button type="button" class="tab" data-target="#jewel-loan" role="tab"
+                                        aria-selected="false">Jewel Loan Calculator</button>
                                 </div>
-
                                 <div class="tabs-scroll-indicator">
-                                    <button type="button" class="tabs-next" aria-label="Show more tabs">
-                                        <i class="fa-solid fa-chevron-right"></i>
-                                    </button>
+                                    <button type="button" class="tabs-next" aria-label="Show more tabs"><i
+                                            class="fa-solid fa-chevron-right"></i></button>
                                 </div>
                             </div>
-                            <!-- Fixed Deposit -->
                             <div id="fixed-deposit" class="calculator active">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="fd-principal">Deposit Amount (₹)</label>
-                                            <input type="number" id="fd-principal" placeholder="Enter deposit amount"
-                                                min="0">
+                                <div class="calculator-card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <label for="fd-principal">Deposit Amount (₹)</label>
+                                                <input type="number" id="fd-principal" min="0.01" step="0.01"
+                                                    placeholder="Enter deposit Amount"
+                                                    aria-label="Deposit amount in rupees">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <label for="fd-rate">Interest Rate Percentage</label>
+                                                <input type="number" id="fd-rate" min="0" step="0.01"
+                                                    placeholder="Enter interest Rate"
+                                                    aria-label="Annual interest rate percentage">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <label for="fd-time">Time Duraion</label>
+                                                <div class="d-flex">
+                                                    <input type="number" id="fd-time" min="1" step="1"
+                                                        placeholder="Time Duration" aria-label="Fixed deposit duration">
+                                                    <select id="fd-unit" aria-label="Fixed deposit duration unit">
+                                                        <option value="days">day(s)</option>
+                                                        <option value="months">month(s)</option>
+                                                        <option value="years">year(s)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <label for="fd-compounds">Compounding Frequency</label>
+                                                <select id="fd-compounds" aria-label="Compounding frequency">
+                                                    <option value="0">Simple Interest</option>
+                                                    <option value="4" selected>Compounded Quarterly</option>
+                                                    <option value="12">Compounded Monthly</option>
+                                                    <option value="2">Compounded Half-Yearly</option>
+                                                    <option value="1">Compounded Yearly</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="fd-rate">Annual Interest Rate (%)</label>
-                                            <input type="number" id="fd-rate" placeholder="Enter interest rate" min="0"
-                                                step="0.01">
-                                        </div>
+                                    <div class="calculator-actions">
+                                        <button type="button" class="btn-two" id="calculate-fd">Calculate</button>
+                                        <button type="button" class="reset-calculator" data-reset="fd">Reset</button>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="fd-time">Tenure (Years)</label>
-                                            <input type="number" id="fd-time" placeholder="Enter tenure" min="0"
-                                                step="0.01">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="fd-compounds">Compounds per Year</label>
-                                            <input type="number" id="fd-compounds" value="4" placeholder="e.g. 4"
-                                                min="1">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-12 d-flex justify-content-center">
-                                    <a id="calculate-fd" class="btn-one" data-animation="fadeInUp" data-delay=".8s"
-                                        href="#">
-                                        <button type="button" class="bg-transparent">
-                                            Calculate Fixed Deposit
-                                        </button>
-                                    </a>
-                                </div>
-
-                                <div class="result" id="result-fd">
-                                    Maturity Amount: ₹0<br>
-                                    Interest Earned: ₹0
+                                    <div class="calculator-output" id="result-fd" aria-live="polite"></div>
                                 </div>
                             </div>
 
-                            <!-- Recurring Deposit -->
                             <div id="recurring-deposit" class="calculator">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="rd-monthly">Monthly Deposit (₹)</label>
-                                            <input type="number" id="rd-monthly" placeholder="Enter monthly deposit"
-                                                min="0">
+                                <div class="calculator-card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <label for="rd-monthly">Deposit Amount (₹)</label>
+                                                <input type="number" id="rd-monthly" min="0.01" step="0.01"
+                                                    placeholder="Monthly Deposit in Rs."
+                                                    aria-label="Monthly deposit in rupees">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <label for="rd-rate">Interest Rate Percentage</label>
+                                                <input type="number" id="rd-rate" min="0" step="0.01"
+                                                    placeholder="eg. 8.5 Interest Rate Percentage"
+                                                    aria-label="Annual interest rate percentage">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="input-group">
+                                                <label for="fd-time">Time Duraion</label>
+                                                <div class="d-flex">
+                                                    <input type="number" id="rd-time" min="1" step="1"
+                                                        placeholder="Time Duration"
+                                                        aria-label="Recurring deposit duration">
+                                                    <select id="rd-unit" aria-label="Recurring deposit duration unit">
+                                                        <option value="months" selected>month(s)</option>
+                                                        <!-- <option value="years">year(s)</option> -->
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="rd-rate">Annual Interest Rate (%)</label>
-                                            <input type="number" id="rd-rate" placeholder="Enter interest rate" min="0"
-                                                step="0.01">
-                                        </div>
+                                    <div class="calculator-actions">
+                                        <button type="button" class="btn-two" id="calculate-rd">Calculate</button>
+                                        <button type="button" class="reset-calculator" data-reset="rd">Reset</button>
                                     </div>
-                                    <div class="col-lg-12">
-                                        <div class="input-group">
-                                            <label for="rd-time">Tenure (Years)</label>
-                                            <input type="number" id="rd-time" placeholder="Enter tenure" min="0"
-                                                step="0.01">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 d-flex justify-content-center">
-                                    <a id="calculate-rd" class="btn-one" data-animation="fadeInUp" data-delay=".8s"
-                                        href="#">
-                                        <button type="button" class="bg-transparent">
-                                            Calculate Recurring Deposit
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="result" id="result-rd">
-                                    Maturity Amount: ₹0<br>
-                                    Total Deposit: ₹0<br>
-                                    Interest Earned: ₹0
-                                </div>
-                            </div>
-
-                            <!-- Savings Deposit -->
-                            <div id="savings-deposit" class="calculator">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="sd-principal">Deposit Amount (₹)</label>
-                                            <input type="number" id="sd-principal" placeholder="Enter deposit amount"
-                                                min="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="sd-rate">Annual Interest Rate (%)</label>
-                                            <input type="number" id="sd-rate" placeholder="Enter interest rate" min="0"
-                                                step="0.01">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="sd-time">Period (Years)</label>
-                                            <input type="number" id="sd-time" placeholder="Enter period" min="0"
-                                                step="0.01">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="sd-compounds">Interest Compounding</label>
-                                            <select id="sd-compounds">
-                                                <option value="365">Daily</option>
-                                                <option value="12" selected>Monthly</option>
-                                                <option value="4">Quarterly</option>
-                                                <option value="2">Half-Yearly</option>
-                                                <option value="1">Yearly</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 d-flex justify-content-center">
-                                    <a id="calculate-sd" class="btn-one" data-animation="fadeInUp" data-delay=".8s"
-                                        href="#">
-                                        <button type="button" class="bg-transparent">
-                                            Calculate Savings
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="result" id="result-sd">
-                                    Total Amount: ₹0<br>
-                                    Interest Earned: ₹0
+                                    <div class="calculator-output" id="result-rd" aria-live="polite"></div>
                                 </div>
                             </div>
 
-                            <!-- Jewel Loan -->
                             <div id="jewel-loan" class="calculator">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="jewel-weight">Gold Weight (Grams)</label>
-                                            <input type="number" id="jewel-weight" placeholder="Enter gold weight"
-                                                min="0" step="0.01">
+                                <div class="calculator-card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <label for="jewel-principal">Principal Amount (₹)</label>
+                                                <input type="number" id="jewel-principal" min="0.01" step="0.01"
+                                                    placeholder="Principal amount in Rs."
+                                                    aria-label="Jewel loan principal amount in rupees">
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="input-group">
+                                                <label for="jewel-rate">Interest Rate Percentage</label>
+                                                <input type="number" id="jewel-rate" min="0" step="0.01"
+                                                    placeholder="eg. 8.5 Interest Rate Percentage"
+                                                    aria-label="Annual interest rate percentage">
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="input-group">
+                                                <label for="jewel-time">Time Duraion</label>
+                                                <div class="d-flex">
+                                                    <input type="number" id="jewel-time" min="1" step="1"
+                                                        placeholder="Time Duration" aria-label="Jewel loan duration">
+                                                    <select id="jewel-unit" aria-label="Jewel loan duration unit">
+                                                        <option value="months" selected>month(s)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="gold-rate">Gold Rate per Gram (₹)</label>
-                                            <input type="number" id="gold-rate" placeholder="Enter gold rate" min="0">
-                                        </div>
+                                    <div class="calculator-actions">
+                                        <button type="button" class="btn-two" id="calculate-jewel">Calculate</button>
+                                        <button type="button" class="reset-calculator" data-reset="jewel">Reset</button>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="jewel-ltv">Loan Eligibility (%)</label>
-                                            <input type="number" id="jewel-ltv" value="75" placeholder="e.g. 75" min="0"
-                                                max="100" step="0.01">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="jewel-rate">Annual Interest Rate (%)</label>
-                                            <input type="number" id="jewel-rate" placeholder="Enter interest rate"
-                                                min="0" step="0.01">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="input-group">
-                                            <label for="jewel-time">Loan Tenure (Months)</label>
-                                            <input type="number" id="jewel-time" placeholder="Enter tenure in months"
-                                                min="1">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 d-flex justify-content-center">
-                                    <a id="calculate-jewel" class="btn-one" data-animation="fadeInUp" data-delay=".8s"
-                                        href="#">
-                                        <button type="button" class="bg-transparent">
-                                            Calculate Jewel Loan
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="result" id="result-jewel">
-                                    Eligible Loan Amount: ₹0<br>
-                                    Estimated Interest: ₹0<br>
-                                    Total Repayment: ₹0
-                                </div>
-                            </div>
-
-                            <!-- Deposit Loan -->
-                            <div id="deposit-loan" class="calculator">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="dl-deposit">Deposit Amount (₹)</label>
-                                            <input type="number" id="dl-deposit" placeholder="Enter deposit amount"
-                                                min="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="dl-eligibility">Loan Eligibility (%)</label>
-                                            <input type="number" id="dl-eligibility" value="90" placeholder="e.g. 90"
-                                                min="0" max="100" step="0.01">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="dl-rate">Annual Interest Rate (%)</label>
-                                            <input type="number" id="dl-rate" placeholder="Enter loan interest rate"
-                                                min="0" step="0.01">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="input-group">
-                                            <label for="dl-time">Loan Tenure (Years)</label>
-                                            <input type="number" id="dl-time" placeholder="Enter loan tenure" min="0"
-                                                step="0.01">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 d-flex justify-content-center">
-                                    <a id="calculate-dl" class="btn-one" data-animation="fadeInUp" data-delay=".8s"
-                                        href="#">
-                                        <button type="button" class="bg-transparent">
-                                            Calculate Deposit Loan
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="result" id="result-dl">
-                                    Eligible Loan Amount: ₹0<br>
-                                    Monthly EMI: ₹0<br>
-                                    Total Interest: ₹0<br>
-                                    Total Repayment: ₹0
+                                    <div class="calculator-output" id="result-jewel" aria-live="polite"></div>
                                 </div>
                             </div>
                         </div>
@@ -586,7 +482,7 @@
                             </div>
                             <div class="info animation__arryLeftRight">
                                 <div class="about-experience">
-                                    <span>80+</span>
+                                    <span>30+</span>
                                     <p class="mb-0 text-black fw-bold">
                                         <small>Years of Experience</small>
                                     </p>
@@ -953,7 +849,7 @@
                             <figure class="image">
                                 <img class="wow imageUpToDown" src="assets/images/choose/choose-image1.webp"
                                     alt="Mailam Murugan Benefit Nidhi Ltd.">
-                                <div class="outer-box">
+                                <!-- <div class="outer-box">
                                     <div class="choose-block">
                                         <div class="pie-graph">
                                             <div class="graph-outer">
@@ -984,7 +880,7 @@
                                             <h5 class="title">Financial Services</h5>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </figure>
                         </div>
                     </div>
@@ -1425,13 +1321,32 @@
                             <div class="col-lg-3 d-flex justify-content-lg-end">
                                 <div class="footer-contact mb-lg-5 mb-0">
                                     <h4 class="widget-title">Contact</h4>
+
+                                    <div class="contact-item">
+                                        <span>Email</span>
+                                        <a href="mailto:mmbfund94@gmail.com">mmbfund94@gmail.com</a>
+                                    </div>
                                     <div class="contact-item">
                                         <span>Phone</span>
                                         <a href="tel:+919361368299">+91 93613 68299</a>
                                     </div>
+
                                     <div class="contact-item">
-                                        <span>Address</span>
-                                        <p>No. 153, 2nd Floor,<br>Jawaharlal Nehru Street,<br>Tindivanam – 604001</p>
+                                        <span>Head Office</span>
+                                        <p>
+                                            No. 153, 2nd Floor,<br>
+                                            Jawaharlal Nehru Street,<br>
+                                            Tindivanam – 604001
+                                        </p>
+                                    </div>
+
+                                    <div class="contact-item">
+                                        <span>Branch Office</span>
+                                        <p>
+                                            Satyasantanam Complex,<br>
+                                            GST Road, Kooteripattu,<br>
+                                            Tindivanam – 604302
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -1453,6 +1368,27 @@
     <button id="backToTop" class="back-top-btn" type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
+
+
+    <!-- Calculator Results Modal -->
+    <div class="calc-modal" id="calculatorModal" aria-hidden="true">
+        <div class="calc-modal-content" role="dialog" aria-modal="true" aria-labelledby="calcModalTitle">
+
+            <div class="calc-modal-header">
+                <h3 id="calcModalTitle">Calculation Results</h3>
+                <button type="button" class="calc-modal-close" id="closeCalculatorModal"
+                    aria-label="Close">&times;</button>
+            </div>
+
+            <div class="calc-modal-body" id="calculatorModalBody">
+            </div>
+
+            <div class="calc-modal-footer">
+                <button type="button" class="btn-two" id="doneCalculatorModal">Done</button>
+            </div>
+        </div>
+    </div>
+    <div id="toast-message" class="toast-message"></div>
     <!-- End Page Wrapper -->
     <!-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
     <script src="assets/js/jquery.js"></script>
@@ -1496,6 +1432,367 @@
         });
     </script>
     <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const byId = id => document.getElementById(id);
+
+            const modal = byId("calculatorModal");
+            const modalBody = byId("calculatorModalBody");
+            const modalTitle = byId("calcModalTitle");
+            const closeButton = byId("closeCalculatorModal");
+            const doneButton = byId("doneCalculatorModal");
+
+            const money = value => {
+                return "₹" + Number(value).toLocaleString("en-IN", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                });
+            };
+
+            function number(id, label, min = 0) {
+                const el = byId(id);
+                const value = Number(el.value);
+
+                if (
+                    !el ||
+                    el.value.trim() === "" ||
+                    !Number.isFinite(value) ||
+                    value < min
+                ) {
+                    throw new Error("Please enter a valid " + label + ".");
+                }
+
+                return value;
+            }
+
+            function openModal(title, rows) {
+                modalTitle.textContent = title;
+                modalBody.replaceChildren();
+
+                rows.forEach(([label, value]) => {
+                    const row = document.createElement("div");
+                    row.className = "calc-result-row";
+
+                    const labelElement = document.createElement("span");
+                    labelElement.textContent = label;
+
+                    const valueElement = document.createElement("strong");
+                    valueElement.textContent = money(value);
+
+                    row.append(labelElement, valueElement);
+                    modalBody.appendChild(row);
+                });
+
+                modal.classList.add("is-open");
+                modal.setAttribute("aria-hidden", "false");
+                document.body.classList.add("calc-modal-open");
+                closeButton.focus();
+            }
+
+            function closeModal() {
+                modal.classList.remove("is-open");
+                modal.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("calc-modal-open");
+            }
+
+            closeButton.addEventListener("click", closeModal);
+            doneButton.addEventListener("click", closeModal);
+
+            modal.addEventListener("click", function (event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape" && modal.classList.contains("is-open")) {
+                    closeModal();
+                }
+            });
+
+            function showToast(message) {
+                const toast = document.getElementById("toast-message");
+
+                toast.textContent = message;
+                toast.classList.add("show");
+
+                clearTimeout(toast.timeout);
+                toast.timeout = setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 4000);
+            }
+
+            function calculate(callback) {
+                try {
+                    callback();
+                } catch (error) {
+                    showToast(error.message);
+                }
+            }
+            function durationInOriginalUnits(value, unit) {
+                if (unit === "days") return 365;
+                if (unit === "months") return 12;
+                return 1;
+            }
+
+            // FIXED DEPOSIT CALCULATOR
+            byId("calculate-fd").addEventListener("click", function () {
+                calculate(function () {
+                    const principal = number(
+                        "fd-principal", "deposit amount greater than zero", 0.01
+                    );
+
+                    const rate = number(
+                        "fd-rate", "interest rate greater than zero", 0.01
+                    );
+
+                    if (rate > 100) {
+                        throw new Error("Interest rate cannot exceed 100%.");
+                    }
+
+                    const tenure = number(
+                        "fd-time", "time duration greater than zero", 1
+                    );
+
+                    const unit = byId("fd-unit").value;
+                    const tenurePeriod = durationInOriginalUnits(tenure, unit);
+
+                    let frequency = Number(byId("fd-compounds").value);
+
+                    // Match original SNNL logic for short fixed deposits.
+                    if (unit === "days" && tenure <= 90) {
+                        frequency = 0;
+                    }
+
+                    let maturity;
+
+                    if (frequency === 0) {
+                        // Original simple-interest formula.
+                        maturity = principal * (
+                            1 + (rate * tenure) / (tenurePeriod * 100)
+                        );
+                    } else {
+                        // Original compound-interest formula.
+                        const factor = 1 + rate / (100 * frequency);
+                        const periods = tenure * frequency / tenurePeriod;
+
+                        maturity = principal * Math.pow(factor, periods);
+                    }
+
+                    // Original SNNL displays the maturity amount to 2 decimals.
+                    maturity = Number(maturity.toFixed(2));
+
+                    const interestEarned = Number(
+                        (maturity - principal).toFixed(2)
+                    );
+
+                    openModal("Fixed Deposit Results", [
+                        ["Principal Amount", principal],
+                        ["Maturity Amount", maturity],
+                        ["Interest Earned", interestEarned]
+                    ]);
+                });
+            });
+
+            // RECURRING DEPOSIT CALCULATOR
+            byId("calculate-rd").addEventListener("click", function () {
+                calculate(function () {
+                    const monthly = number(
+                        "rd-monthly", "monthly deposit greater than zero", 0.01
+                    );
+
+                    const annualRate = number(
+                        "rd-rate", "interest rate greater than zero", 0.01
+                    );
+
+                    if (annualRate > 100) {
+                        throw new Error("Interest rate cannot exceed 100%.");
+                    }
+
+                    const duration = number(
+                        "rd-time", "time duration greater than zero", 1
+                    );
+
+                    const months = Math.round(
+                        byId("rd-unit").value === "years"
+                            ? duration * 12
+                            : duration
+                    );
+
+                    if (months < 1 || !Number.isSafeInteger(months)) {
+                        throw new Error("Please enter a valid deposit duration.");
+                    }
+
+                    /*
+                     * Original SNNL RD formula:
+                     * Maturity = (monthly deposit × months)
+                     *          + (months × (months + 1)
+                     *          × monthly deposit × annual rate / 2400)
+                     */
+                    const maturityRaw =
+                        (monthly * months) +
+                        (
+                            months * (months + 1) *
+                            monthly * annualRate / 2400
+                        );
+
+                    // Original calculator rounds the RD maturity UP.
+                    const maturity = Math.ceil(maturityRaw);
+                    const totalDeposit = monthly * months;
+                    const interestEarned = maturity - totalDeposit;
+
+                    openModal("Recurring Deposit Results", [
+                        ["Monthly Installment", monthly],
+                        // ["Total Deposit", totalDeposit],
+                        ["Maturity Amount", maturity],
+                        // ["Interest Earned", interestEarned]
+                    ]);
+                });
+            });
+
+            // JEWEL LOAN CALCULATOR
+            byId("calculate-jewel").addEventListener("click", function () {
+                calculate(function () {
+                    const principal = number(
+                        "jewel-principal", "loan amount greater than zero", 0.01
+                    );
+
+                    const rate = number(
+                        "jewel-rate", "interest rate greater than zero", 0.01
+                    );
+
+                    if (rate > 100) {
+                        throw new Error("Interest rate cannot exceed 100%.");
+                    }
+
+                    number(
+                        "jewel-time", "loan duration greater than zero", 1
+                    );
+
+                    /*
+                     * Original SNNL formula:
+                     * Monthly payable = principal × annual rate / 1200.
+                     *
+                     * This reproduces the original displayed result.
+                     * The original formula does not include tenure in
+                     * the monthly payable calculation.
+                     */
+                    const monthlyPayable = principal * rate / 1200;
+
+                    openModal("Jewel Loan Results", [
+                        ["Loan Principal", principal],
+                        ["Monthly Payable", monthlyPayable]
+                    ]);
+                });
+            });
+
+            // TAB SWITCHING
+            const tabsContainer = document.querySelector(
+                ".calculator-container .tabs"
+            );
+
+            const tabsIndicator = document.querySelector(
+                ".calculator-container .tabs-scroll-indicator"
+            );
+
+            const tabsNextButton = document.querySelector(
+                ".calculator-container .tabs-next"
+            );
+
+            function updateTabsIndicator() {
+                if (!tabsContainer || !tabsIndicator) return;
+
+                const maxScrollLeft =
+                    tabsContainer.scrollWidth - tabsContainer.clientWidth;
+
+                if (
+                    maxScrollLeft <= 2 ||
+                    tabsContainer.scrollLeft >= maxScrollLeft - 2
+                ) {
+                    tabsIndicator.classList.add("hidden");
+                } else {
+                    tabsIndicator.classList.remove("hidden");
+                }
+            }
+
+            if (tabsNextButton && tabsContainer) {
+                tabsNextButton.addEventListener("click", function () {
+                    tabsContainer.scrollBy({
+                        left: 180,
+                        behavior: "smooth"
+                    });
+                });
+
+                tabsContainer.addEventListener("scroll", updateTabsIndicator);
+                window.addEventListener("resize", updateTabsIndicator);
+            }
+
+            document.querySelectorAll(
+                ".screenshot-calculators .tab"
+            ).forEach(function (tab) {
+                tab.addEventListener("click", function () {
+                    document.querySelectorAll(
+                        ".screenshot-calculators .tab"
+                    ).forEach(function (item) {
+                        item.classList.remove("active");
+                        item.setAttribute("aria-selected", "false");
+                    });
+
+                    tab.classList.add("active");
+                    tab.setAttribute("aria-selected", "true");
+
+                    document.querySelectorAll(
+                        ".screenshot-calculators .calculator"
+                    ).forEach(function (calculator) {
+                        calculator.classList.remove("active");
+                    });
+
+                    const target = document.querySelector(tab.dataset.target);
+
+                    if (target) {
+                        target.classList.add("active");
+                    }
+
+                    tab.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest",
+                        inline: "center"
+                    });
+
+                    setTimeout(updateTabsIndicator, 300);
+                });
+            });
+
+            updateTabsIndicator();
+
+            // RESET EACH CALCULATOR
+            document.querySelectorAll(
+                ".screenshot-calculators .reset-calculator"
+            ).forEach(function (button) {
+                button.addEventListener("click", function () {
+                    const type = button.dataset.reset;
+                    const card = button.closest(".calculator");
+
+                    card.querySelectorAll("input").forEach(function (input) {
+                        input.value = "";
+                    });
+
+                    if (type === "fd") {
+                        byId("fd-unit").value = "days";
+                        byId("fd-compounds").value = "4";
+                    } else if (type === "rd") {
+                        byId("rd-unit").value = "months";
+                    } else {
+                        byId("jewel-unit").value = "months";
+                    }
+
+                    closeModal();
+                });
+            });
+        });
+
+    </script>
+    <!-- <script>
         const tabsContainer = document.querySelector('.calculator-container .tabs');
         const tabsIndicator = document.querySelector('.calculator-container .tabs-scroll-indicator');
         const tabsNextButton = document.querySelector('.calculator-container .tabs-next');
@@ -1717,7 +2014,7 @@
              Total Interest: ${formatRupee(totalInterest)}<br>
              Total Repayment: ${formatRupee(totalRepayment)}`;
         });
-    </script>
+    </script> -->
 </body>
 
 </html>

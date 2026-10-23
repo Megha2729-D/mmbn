@@ -2,251 +2,1090 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Calculator</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <title>SNNL</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        @font-face {
+            font-family: Calibri;
+            src: url(http://shrinarayaninidhi.necurity.com/wp-content/uploads/2020/04/Calibri-Regular.ttf);
         }
 
-       
+        body {
+            font-family: Calibri, Arial, sans-serif !important;
+        }
+
+        .main_Table {
+            width: 98%;
+            border: 0px;
+        }
+
+        .main_Table td {
+            vertical-align: top;
+            border: 0px;
+        }
+
+        .outer_table {
+            border: 0px;
+            width: 100%;
+        }
+
+        .outer_table td {
+            border: 0px;
+            font-family: 'Open Sans', 'San Serif', Verdana;
+            font-size: 13px;
+        }
+
+
+
+        .btn-primary {
+            background: #0aa556 !important;
+            background-color: #0aa556 !important;
+            /*background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%) !important;
+background-color:linear-gradient(90deg, #ee0979 0%, #ff6a00 100%) !important;*/
+            font-family: Calibri, Arial, sans-serif !important;
+        }
+
+        .card {
+            min-height: 292px;
+            background: #D3D3D3 !important;
+            background-color: #D3D3D3 !important;
+            /*background: #0aa556 !important;
+background-color: #0aa556 !important;*/
+        }
+
+        .bg-title {
+            background: #0aa556 !important;
+            background-color: #0aa556 !important;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+            max-width: 500px;
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatetop {
+            from {
+                top: -300px;
+                opacity: 0
+            }
+
+            to {
+                top: 0;
+                opacity: 1
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 2px 16px;
+            background-color: #0aa556;
+            color: white;
+        }
+
+        .modal-body {
+            padding: 2px 16px;
+        }
+
+        .modal-footer {
+            padding: 2px 16px;
+            background-color: #5cb85c;
+            color: white;
+        }
+
+        .form-control {
+            font-size: 0.85rem !important;
+            font-family: Calibri, Arial, sans-serif !important;
+        }
+
+        .modal-content {
+            top: -50px !important;
+        }
     </style>
+
+
+
 </head>
 
 <body>
-    <div class="calculator-container">
-        <h1>Financial Calculator</h1>
-        <div class="tabs">
-            <div class="tab active" data-target="#future-value">Future Value</div>
-            <div class="tab" data-target="#loan-amortization">Loan</div>
-            <div class="tab" data-target="#savings-plan">Savings</div>
-            <div class="tab" data-target="#mortgage-calculator">Mortgage</div>
-            <div class="tab" data-target="#investment-return">Investment</div>
-        </div>
+    <div cellpadding="0" cellspacing="0">
 
-        <div id="future-value" class="calculator active">
-            <div class="input-group">
-                <label for="principal">Principal Amount</label>
-                <input type="number" id="principal">
-            </div>
-            <div class="input-group">
-                <label for="rate">Annual Interest Rate (%)</label>
-                <input type="number" id="rate">
-            </div>
-            <div class="input-group">
-                <label for="time">Time (Years)</label>
-                <input type="number" id="time">
-            </div>
-            <div class="input-group">
-                <label for="compounds">Compounds per Year</label>
-                <input type="number" id="compounds">
-            </div>
-            <button id="calculate-future-value">Calculate Future Value</button>
-            <div class="result" id="result-future-value">Future Value: $0</div>
-        </div>
+        <script>
 
-        <div id="loan-amortization" class="calculator">
-            <div class="input-group">
-                <label for="loan-principal">Loan Amount</label>
-                <input type="number" id="loan-principal">
-            </div>
-            <div class="input-group">
-                <label for="loan-rate">Annual Interest Rate (%)</label>
-                <input type="number" id="loan-rate">
-            </div>
-            <div class="input-group">
-                <label for="loan-time">Time (Years)</label>
-                <input type="number" id="loan-time">
-            </div>
-            <button id="calculate-loan">Calculate Loan Payment</button>
-            <div class="result" id="result-loan-payment">Monthly EMI: $0<br>Total Amount Payable: $0<br>Interest Amount:
-                $0</div>
-        </div>
 
-        <div id="savings-plan" class="calculator">
-            <div class="input-group">
-                <label for="savings-principal">Initial Savings</label>
-                <input type="number" id="savings-principal">
-            </div>
-            <div class="input-group">
-                <label for="savings-rate">Annual Interest Rate (%)</label>
-                <input type="number" id="savings-rate">
-            </div>
-            <div class="input-group">
-                <label for="savings-time">Time (Years)</label>
-                <input type="number" id="savings-time">
-            </div>
-            <div class="input-group">
-                <label for="savings-contribution">Annual Contribution</label>
-                <input type="number" id="savings-contribution">
-            </div>
-            <button id="calculate-savings">Calculate Savings</button>
-            <div class="result" id="result-savings">Total Savings: $0<br>Interest Earned: $0</div>
-        </div>
+            $(document).ready(function () {
+                $(".All_Rounds").load("Notification.htm");
+                $(".All_Rounds_static").load("staticnotes.htm");
+            });
 
-        <div id="mortgage-calculator" class="calculator">
-            <div class="input-group">
-                <label for="mortgage-amount">Mortgage Amount</label>
-                <input type="number" id="mortgage-amount" placeholder="Enter mortgage amount">
-            </div>
-            <div class="input-group">
-                <label for="down-payment">Down Payment (Optional)</label>
-                <input type="number" id="down-payment" placeholder="Enter down payment (optional)">
-            </div>
-            <div class="input-group">
-                <label for="mortgage-rate">Annual Interest Rate (%)</label>
-                <input type="number" id="mortgage-rate" placeholder="Enter annual interest rate">
-            </div>
-            <div class="input-group">
-                <label for="mortgage-time">Time (Years)</label>
-                <input type="number" id="mortgage-time" placeholder="Enter loan term in years">
-            </div>
-            <div class="input-group">
-                <label for="property-taxes">Property Taxes per Year (Optional)</label>
-                <input type="number" id="property-taxes" placeholder="Enter property taxes per year (optional)">
-            </div>
-            <div class="input-group">
-                <label for="insurance">Homeowners Insurance per Year (Optional)</label>
-                <input type="number" id="insurance" placeholder="Enter homeowners insurance per year (optional)">
-            </div>
-            <div class="input-group">
-                <label for="other-taxes">Other Taxes per Year (Optional)</label>
-                <input type="number" id="other-taxes" placeholder="Enter other taxes per year (optional)">
-            </div>
-            <button id="calculate-mortgage">Calculate Mortgage Payment</button>
-            <div class="result" id="result-mortgage">
-                Monthly Payment: $0<br>
-                Total Mortgage Payable: $0<br>
-                Mortgage Interest: $0
-            </div>
-        </div>
 
-        <div id="investment-return" class="calculator">
-            <div class="input-group">
-                <label for="investment-principal">Investment Amount</label>
-                <input type="number" id="investment-principal">
+
+        </script>
+
+
+
+
+
+        <center>
+            <div class="row">
+                <div class="col-md-4 px-1">
+
+                    <div class="card mb-2 rounded-0">
+                        <div class="card-header rounded-0 pb-0 ">
+                            <h6><b>Fixed Deposit Calculator</b></h6>
+                        </div>
+                        <div class="card-body  pb-0 rounded-0">
+                            <table class="outer_table">
+
+
+                                <tbody>
+                                    <tr valign="top">
+
+                                        <td width="100%" class="Home_Page_Content">
+
+                                            <div>
+                                                <form name="fdMatVal" id="fdMatVal">
+                                                    <table style="border: 0px dashed #C0C0C0; vertical-align: top"
+                                                        width="100%" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="100%">
+                                                                    <div><input class="form-control mb-1" type="text"
+                                                                            name="principal" id="principal" value=""
+                                                                            onblur="checkNeg('this');"
+                                                                            placeholder="Deposit Amt in Rs."></div>
+
+
+                                                                    <div><input class="form-control mb-1" type="text"
+                                                                            placeholder="eg. 8.5 Interest Rate Percentage "
+                                                                            name="interest" id="interest"
+                                                                            class="dropbox_asset" value=""></div>
+
+
+                                                                    <div><input class="form-control mb-1" type="text"
+                                                                            name="tenure" id="tenure"
+                                                                            class="dropbox_asset" value=""
+                                                                            placeholder="Time Duration"
+                                                                            onblur="checkNeg('this');"
+                                                                            style="width:60%;float:left"> <select
+                                                                            style="width:40%;float:left;position:relative;left:2px;float:left;position:relative;left:2px;"
+                                                                            id="tenurePeriod" name="tenurePeriod"
+                                                                            class="dropbox_asset form-control">
+                                                                            <option value="365">day(s)</option>
+                                                                            <option value="12">month(s)</option>
+                                                                            <option value="1">year(s)</option>
+                                                                        </select>
+                                                                    </div>
+
+
+                                                                    <div><select id="frequency" name="frequency"
+                                                                            class="dropbox_asset form-control  mb-1">
+                                                                            <option value="0">Simple Interest</option>
+                                                                            <!--<option value="12">Compounded Monthly</option>-->
+                                                                            <option value="4" selected="">Compounded
+                                                                                Quarterly</option>
+                                                                            <option value="2">Compounded Half Yearly
+                                                                            </option>
+                                                                            <option value="1">Compounded Yearly</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div></div>
+                                                                </td>
+
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td style="text-align: center;" height="15px">
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td class="text-center">
+
+                                                                    <a class="btn btn-primary" id="btnSubmit"
+                                                                        href="javascript:void(0);"
+                                                                        onclick="return calulateMaturity(this);">
+                                                                        <span>Calculate</span></a>
+                                                                    <a class="btn btn-primary"
+                                                                        href="javascript:void(0);" id="btnReset"
+                                                                        onclick="javascript:reset_fdcalcfrm();">
+                                                                        <span>Reset</span> </a>
+                                                                    <!-- <a class="btn btn-primary" href="http://shrinarayaninidhi.net/index.php?page=members#snnl" target="_new">
+										<span>Enquiry</span></a> -->
+
+                                                                </td>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <td border="1" id="res_fd" style="display: none"
+                                                                    width="100%" height="300px">
+
+                                                                    <table
+                                                                        style="border: 0; border-style: dotted; border-color: #C0C0C0; background-color: #C0C0C0;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td><span
+                                                                                        style="font-size:18px; border-bottom: 1px solid #C0C0C0">Principal
+                                                                                        Amount </span></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="background:#C0C0C0"
+                                                                                        id="resp_prin" name="resp_prin">
+                                                                                        <strong></strong>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td><span
+                                                                                        style="font-size:18px;border-bottom:1px solid #C0C0C0">
+                                                                                        Maturity Amount</span> </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="background:#C0C0C0"
+                                                                                        id="resp_matval"
+                                                                                        name="resp_matval">
+                                                                                        <strong></strong>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td><span
+                                                                                        style="font-size:18px;border-bottom:1px solid #C0C0C0;">
+                                                                                        Interest earned</span></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <center>
+                                                                                        <div style="background:#C0C0C0"
+                                                                                            id="resp_intval"
+                                                                                            name="resp_intval">
+                                                                                            <strong></strong>
+                                                                                        </div>
+                                                                                    </center>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+
+
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!--<table style="border: 0px dashed #C0C0C0; vertical-align: top" width="90%" height="180px" border="1">
+							<tbody><tr>
+							<td>
+							</td>
+							</tr>
+							</tbody></table> -->
+
+                                                </form>
+                                            </div>
+
+
+                                            <div class="cal_bg_head" id="response_div" name="response_div">
+                                                <div></div>
+                                                <div style="float:right;">
+                                                    <table class="homepage_content_table"
+                                                        style="border-width: 1px; color:Black;" rules="all"
+                                                        cellspacing="0" cellpadding="0">
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-4 px-1">
+                    <div class="card  mb-2 rounded-0">
+                        <div class="card-header rounded-0 pb-0 ">
+                            <h6><b>Recurring Deposit Calculator</b></h6>
+                        </div>
+                        <div class="card-body rounded-0">
+                            <table class="outer_table">
+
+                                <tbody>
+                                    <tr valign="top">
+
+
+                                        <td width="100%" class="Home_Page_Contents">
+
+                                            <div>
+
+                                                <form onsubmit="return false" id="maCalculator">
+                                                    <table style="border: 0px dashed #C0C0C0; vertical-align: top;"
+                                                        width="100%" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="100%">
+                                                                    <div>
+                                                                        <input type="text" class="form-control mb-1"
+                                                                            id="principalMA"
+                                                                            placeholder="Monthly Deposit in Rs." min="0"
+                                                                            required="">
+                                                                    </div>
+
+
+                                                                    <div>
+                                                                        <input type="text" class="form-control mb-1"
+                                                                            id="interestMA"
+                                                                            placeholder="eg. 8.5 Interest Rate Percentage "
+                                                                            min="0" step="0.01" required="">
+                                                                    </div>
+
+
+                                                                    <div>
+                                                                        <input type="text" style="width:60%;float:left;"
+                                                                            class="form-control mb-1" id="timeMA"
+                                                                            placeholder="Time Duration" min="0"
+                                                                            required="">
+                                                                        <select class="form-control"
+                                                                            style="width:40%;float:left;position:relative;left:2px;">
+                                                                            <option value="12">month(s)</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div><strong></strong></div>
+
+                                                                    <select class="form-control mb-1"
+                                                                        style="display:none;" id="compoundMA">
+
+                                                                        <option value="12">Monthly</option>
+                                                                        <option value="4">Quarterly</option>
+                                                                        <option value="2">Half Yearly</option>
+                                                                        <option value="1">Anually </option>
+
+                                                                    </select>
+
+                                                                    <div> </div>
+
+                                                                </td>
+
+
+
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="text-align: center;" height="15px">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    <div class="expanded button-group">
+
+                                                                        <a class="btn btn-primary"
+                                                                            href="javascript:void(0);"
+                                                                            onclick="calculateMaturityAmount(this);">
+                                                                            <span>Calculate</span></a>
+                                                                        <a class="btn btn-primary"
+                                                                            href="javascript:void(0);"
+                                                                            onclick="clearMAForm();"><span>Reset</span></a>
+
+                                                                        <!-- <a class="btn btn-primary" href="http://shrinarayaninidhi.net/index.php?page=members#snnl" target="_new">
+												<span>Enquiry</span></a> -->
+                                                                    </div>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="res_rd"
+                                                                    style="display: none;float:right;background-color:#000;"
+                                                                    width="100%" height="100%">
+
+                                                                    <table
+                                                                        style="border-bottom:1px ;background-color:#C0C0C0&quot;;"
+                                                                        height="200px">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="border-bottom: 1px solid #C0C0C0;">
+                                                                                    <span
+                                                                                        style="font-size:18px;solid #C0C0C0;color:#fff">Installment
+                                                                                        (monthly) </span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="background:#C0C0C0"
+                                                                                        id="ins_val" name="ins_val">
+                                                                                        <strong></strong>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td><span
+                                                                                        style="font-size:18px;border-bottom:1px solid #C0C0C0;float:right;color:#fff">
+                                                                                        Maturity Amount</span> </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="background:#C0C0C0"
+                                                                                        id="mat_val" name="resp_matval">
+                                                                                        <strong></strong>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+
+                                                                        </tbody>
+                                                                    </table>
+
+
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody><!--</table>
+										<table style="border: 0px dashed #C0C0C0; vertical-align: top" width="90%" height="180px" border="1">
+									<tbody><tr>
+									<td>
+									</td>
+									</tr>
+									</tbody></table>-->
+                                                </form>
+                                            </div>
+
+
+                                            <div class="cal_bg_head" id="response_div" name="response_div">
+                                                <div></div>
+                                                <div style="float:right;">
+                                                    <table class="homepage_content_table"
+                                                        style="border-width: 1px; color:Black;" rules="all"
+                                                        cellspacing="0" cellpadding="0">
+
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                <tbody>
+                            </table>
+                        </div>
+                    </div><!-- END CARD-->
+                </div>
+                <div class="col-md-4 px-1">
+                    <div class="card mb-2 rounded-0">
+                        <div class="card-header rounded-0 pb-0 ">
+                            <h6><b>Jewel Loan Calculator</b></h6>
+                        </div>
+                        <div class="card-body rounded-0">
+                            <table class="outer_table">
+                                <tbody>
+                                    <tr valign="top">
+
+                                        <td width="100%" class="Home_Page_Contents_jl">
+                                            <div>
+
+                                                <form name="jlMatVal" id="jlMatVal">
+                                                    <table style="border: 0px dashed #C0C0C0; vertical-align: top"
+                                                        width="100%" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="100%">
+                                                                    <div>
+                                                                        <input type="text" class="form-control mb-1"
+                                                                            id="principalMA"
+                                                                            placeholder="Principal amount in Rs."
+                                                                            min="0" required="">
+                                                                    </div>
+
+
+                                                                    <div>
+                                                                        <input type="text" class="form-control mb-1"
+                                                                            id="interestMA"
+                                                                            placeholder="eg. 8.5 Interest Rate Percentage "
+                                                                            min="0" step="0.01" required="">
+                                                                    </div>
+
+
+                                                                    <div>
+                                                                        <input type="text" style="width:60%;float:left;"
+                                                                            class="form-control mb-1" id="timeMA"
+                                                                            placeholder="Time Duration" min="0"
+                                                                            required="">
+                                                                        <select class="form-control"
+                                                                            style="width:40%;float:left;position:relative;left:2px;">
+                                                                            <option value="12">month(s)</option>
+                                                                        </select>
+                                                                    </div>
+
+
+                                                                    <div> </div>
+
+                                                                </td>
+
+
+                                                                <td id="res_jl" style="display: none" width="100%"
+                                                                    height="300px">
+
+                                                                    <table
+                                                                        style="border-bottom:1px ;background-color:#C0C0C0&quot;;"
+                                                                        height="200px">
+
+                                                                        <tbody>
+                                                                            <tr id="mat_valjl_lbl">
+                                                                                <td><span
+                                                                                        style="font-size:18px; border-bottom:1px solid #C0C0C0;">
+                                                                                        Monthly Payable</span> </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="background:#C0C0C0"
+                                                                                        id="mat_valjl"
+                                                                                        name="resp_matval">
+                                                                                        <strong></strong>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="border-bottom:0px solid #C0C0C0;">
+                                                                                    <span
+                                                                                        style="font-size:18px;solid #C0C0C0">&nbsp;</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="background:#C0C0C0"
+                                                                                        id="ins_val" name="ins_val">
+                                                                                        <strong></strong>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                            <tr>
+                                                                                <td
+                                                                                    style="border-bottom:0px solid #C0C0C0;">
+                                                                                    <span
+                                                                                        style="font-size:18px;solid #C0C0C0">&nbsp;</span>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="background:#C0C0C0"
+                                                                                        id="ins_val" name="ins_val">
+                                                                                        <strong></strong>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+
+                                                                        </tbody>
+                                                                    </table>
+
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="text-align: center;" height="15px">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="text-center">
+                                                                    <div class="expanded button-group">
+
+                                                                        <a class="btn btn-primary"
+                                                                            href="javascript:void(0);"
+                                                                            onclick="return calulateMaturityjl(this);">
+                                                                            <span>Calculate</span></a>
+                                                                        <a class="btn btn-primary"
+                                                                            href="javascript:void(0);"
+                                                                            onclick="clearMAForm();"><span>Reset</span></a>
+
+                                                                        <!-- <a class="btn btn-primary" href="http://shrinarayaninidhi.net/index.php?page=members#snnl" target="_new">
+												<span>Enquiry</span> </a> -->
+                                                                    </div>
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!--<table style="border: 0px dashed #C0C0C0; vertical-align: top" width="90%" height="180px" border="1">
+									<tbody><tr>
+									<td>
+									</td>
+									</tr>
+									</tbody></table> -->
+                                                </form>
+                                            </div>
+
+
+                                            <div class="cal_bg_head" id="response_div" name="response_div">
+                                                <div></div>
+                                                <div style="float:right;">
+                                                    <table class="homepage_content_table"
+                                                        style="border-width: 1px; color:Black;" rules="all"
+                                                        cellspacing="0" cellpadding="0">
+
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+                                    </tr>
+                                <tbody>
+                            </table>
+
+                        </div>
+                    </div><!-- END CARD-->
+
+                </div>
             </div>
-            <div class="input-group">
-                <label for="investment-rate">Annual Interest Rate (%)</label>
-                <input type="number" id="investment-rate">
+            <!--------->
+        </center>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6>Results:</h6>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="myList"></div>
+                </div>
             </div>
-            <div class="input-group">
-                <label for="investment-time">Time (Years)</label>
-                <input type="number" id="investment-time">
-            </div>
-            <button id="calculate-investment">Calculate Investment Return</button>
-            <div class="result" id="result-investment">Total Return: $0<br>Profit Amount: $0</div>
         </div>
     </div>
     <script>
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
+        //RD
+        // Get the modal
+        var modal = document.getElementById("myModal");
 
-                document.querySelectorAll('.calculator').forEach(calc => calc.classList.remove('active'));
-                document.querySelector(tab.dataset.target).classList.add('active');
-            });
-        });
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
 
-        document.getElementById('calculate-future-value').addEventListener('click', () => {
-            const principal = parseFloat(document.getElementById('principal').value);
-            const rate = parseFloat(document.getElementById('rate').value) / 100;
-            const time = parseFloat(document.getElementById('time').value);
-            const compounds = parseInt(document.getElementById('compounds').value);
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-            const futureValue = principal * Math.pow((1 + rate / compounds), compounds * time);
-            document.getElementById('result-future-value').innerText = `Future Value: $${Math.round(futureValue)}`;
-        });
+        function calculateMaturityAmount() {
 
-        document.getElementById('calculate-loan').addEventListener('click', () => {
-            const principal = parseFloat(document.getElementById('loan-principal').value);
-            const rate = parseFloat(document.getElementById('loan-rate').value) / 100 / 12;
-            const time = parseFloat(document.getElementById('loan-time').value) * 12;
+            var p = document.getElementById("principalMA").value;
+            var t = document.getElementById("timeMA").value;
+            var n = document.getElementById("compoundMA").value;
+            var r = document.getElementById("interestMA").value;
+            var n = 12;
 
-            const payment = principal * rate * Math.pow(1 + rate, time) / (Math.pow(1 + rate, time) - 1);
-            const totalPayment = payment * time;
-            const interestAmount = totalPayment - principal;
+            t = parseInt(t);
+            p = parseFloat(p);
 
-            document.getElementById('result-loan-payment').innerHTML =
-                `Monthly EMI: $${Math.round(payment)}<br>Total Amount Payable: $${Math.round(totalPayment)}<br>Interest Amount: $${Math.round(interestAmount)}`;
-        });
+            s = parseFloat(r);
+            r = (s / 100);
 
-        document.getElementById('calculate-savings').addEventListener('click', () => {
-            const principal = parseFloat(document.getElementById('savings-principal').value);
-            const rate = parseFloat(document.getElementById('savings-rate').value) / 100;
-            const time = parseFloat(document.getElementById('savings-time').value);
-            const contribution = parseFloat(document.getElementById('savings-contribution').value);
 
-            const futureValue = principal * Math.pow((1 + rate), time) + contribution * ((Math.pow((1 + rate), time) - 1) / rate);
-            const interestEarned = futureValue - principal - (contribution * time);
+            var g = 12 / n;
 
-            document.getElementById('result-savings').innerHTML =
-                `Total Savings: $${Math.round(futureValue)}<br>Interest Earned: $${Math.round(interestEarned)}`;
-        });
+            var a = t * n / 12;
 
-        document.getElementById('calculate-mortgage').addEventListener('click', () => {
-            const principal = parseFloat(document.getElementById('mortgage-amount').value) || 0;
-            const downPayment = parseFloat(document.getElementById('down-payment').value) || 0;
-            const annualRate = parseFloat(document.getElementById('mortgage-rate').value) / 100 || 0;
-            const years = parseFloat(document.getElementById('mortgage-time').value) || 0;
-            const propertyTaxes = parseFloat(document.getElementById('property-taxes').value) || 0;
-            const annualInsurance = parseFloat(document.getElementById('insurance').value) || 0;
-            const otherTaxes = parseFloat(document.getElementById('other-taxes').value) || 0;
+            var b = (1 + (r / n));
 
-            const loanAmount = principal - downPayment;
 
-            if (loanAmount <= 0) {
-                document.getElementById('result-mortgage').innerHTML = 'Down payment cannot be greater than or equal to the mortgage amount.';
-                return;
+            var h = t / 12;
+
+            y = (((Math.pow(b, a)) - 1) / h) * 100;
+
+
+            maturity_amount = (p * t) + ((t * (t + 1) * p * s) / 2400);
+
+            amount = Math.ceil(maturity_amount);
+
+            document.getElementById("ins_val").innerHTML = "<strong><span style='color:green;font-size:20px;float:right;'>Rs. " + p + "<span></strong>";
+            document.getElementById("mat_val").innerHTML = "<strong><span style='color:green;font-size:20px;float:right;'>Rs. " + Math.round(amount) + "<span></strong>";
+
+
+            document.getElementById("res_jl").style.display = 'none';
+            //document.getElementById("res_rd").style.display = 'block';
+            document.getElementById("res_fd").style.display = 'none';
+
+            res1 = "<div><span style='text-decoration:underline;'>Installment (monthly):</span><br> Rs. " + p + "<div>";
+            res1 += "<div><span  style='text-decoration:underline;'>Maturity Amount:</span><br> Rs. " + Math.round(amount) + "<div>";
+            var myElement = document.getElementById("myList");
+            myElement.innerHTML = res1;
+            modal.style.display = "block";
+
+        }
+
+        // var x = (1+r/n)
+        function calculate_x(r, n) {
+            var x = 1 + (r / 100) / n;
+            console.log(x);
+            return x;
+        }
+        // var y = (1+r/n)^nt
+        // function calculate_y(x,n,t){
+        //  return Math.pow(x,n*calculate_months_in_year(t));
+        // }
+
+        // var t_in_y = t/12; time expressed in year
+        function calculate_months_in_year(t) {
+            return t / 12;
+        }
+
+        function clearMAForm() {
+            var form = document.getElementById("maCalculator");
+            form.reset();
+            document.getElementById("res_jl").style.display = 'none';
+            document.getElementById("res_rd").style.display = 'none';
+            document.getElementById("res_fd").style.display = 'none';
+            // document.getElementById("final-maturity-amount").innerHTML = '<i class="fa fa-inr "></i>';
+        }
+        function clearIAForm() {
+            var form = document.getElementById("iaCalculator");
+            form.reset();
+            document.getElementById("res_jl").style.display = 'none';
+            document.getElementById("res_rd").style.display = 'none';
+            document.getElementById("res_fd").style.display = 'none';
+
+            // document.getElementById("final-installment-amount").innerHTML = '<i class="fa fa-inr "></i>';
+        }
+
+        function calculateInstallmentAmount() {
+
+            var a = document.getElementById('amountIA').value;
+            var t = document.getElementById('timeIA').value;
+            var n = document.getElementById('selectIA').value;
+            var r = document.getElementById('interestIA').value;
+            var x = calculate_x(r, n);
+            var z = 0;
+            for (var i = t; i >= 1; i--) {
+                z = z + Math.pow(x, n * calculate_months_in_year(i));
             }
 
-            const monthlyRate = annualRate / 12;
-            const numberOfPayments = years * 12;
+            var principal_amount = Math.round(a / z);
 
-            const monthlyPayment = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments) / (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
-
-            const monthlyPropertyTaxes = (propertyTaxes / 12) || 0;
-            const monthlyInsurance = (annualInsurance / 12) || 0;
-
-            const totalMonthlyPayment = monthlyPayment + monthlyPropertyTaxes + monthlyInsurance;
-
-            const totalPayment = totalMonthlyPayment * numberOfPayments;
-
-            const totalAnnualPropertyTaxes = propertyTaxes * years;
-            const totalAnnualInsurance = annualInsurance * years;
-            const totalAnnualOtherTaxes = otherTaxes * years;
-
-            const totalCostIncludingTaxes = totalPayment + totalAnnualOtherTaxes;
-
-            const interestAmount = totalPayment - loanAmount;
-
-            document.getElementById('result-mortgage').innerHTML =
-                `Monthly Payment: $${Math.round(totalMonthlyPayment)}<br>Total Amount Payable: $${Math.round(totalCostIncludingTaxes)}<br>Interest Amount: $${Math.round(interestAmount)}`;
-        });
+            document.getElementById("final-installment-amount").innerHTML = "<strong><span style='color:green;font-size:20px;float:right;'>Rs. " + principal_amount + "<span></strong>";
 
 
-        document.getElementById('calculate-investment').addEventListener('click', () => {
-            const principal = parseFloat(document.getElementById('investment-principal').value);
-            const rate = parseFloat(document.getElementById('investment-rate').value) / 100;
-            const time = parseFloat(document.getElementById('investment-time').value);
+        }
 
-            const futureValue = principal * Math.pow((1 + rate), time);
-            const profitAmount = futureValue - principal;
 
-            document.getElementById('result-investment').innerHTML =
-                `Total Return: $${Math.round(futureValue)}<br>Profit Amount: $${Math.round(profitAmount)}`;
-        });
     </script>
+
+    <script language="JavaScript">
+        function calulateMaturity() {
+
+            var i_Chars = ".";
+
+            var principalVal = document.fdMatVal.principal.value;
+
+            if (principalVal == "" || isNaN(principalVal) || (parseFloat(principalVal) <= 0)) {
+                alert("Please enter Principal value");
+                document.fdMatVal.principal.value = "";
+                document.fdMatVal.principal.focus();
+                return (false);
+            }
+
+            for (var i = 0; i < principalVal.length; i++) {
+                if (i_Chars.indexOf(principalVal.charAt(i)) != -1) {
+                    alert("Please enter Principal value in numbers. No Decimals allowed");
+                    document.fdMatVal.principal.value = "";
+                    document.fdMatVal.principal.focus();
+                    return false;
+                }
+            }
+
+            var interestVal = document.fdMatVal.interest.value;
+            if (interestVal == "" || isNaN(interestVal) || (parseFloat(interestVal) <= 0) || (parseFloat(interestVal) > 100)) {
+                alert("Please enter valid Rate of Interest");
+                document.fdMatVal.interest.value = "";
+                document.fdMatVal.interest.focus();
+                return false;
+            }
+
+            var tenureVal = document.fdMatVal.tenure.value;
+            if (tenureVal == "" || isNaN(tenureVal) || (parseFloat(tenureVal) <= 0)) {
+                alert("Please enter Period");
+                document.fdMatVal.tenure.value = "";
+                document.fdMatVal.tenure.focus();
+                return false;
+            }
+
+            for (var i = 0; i < tenureVal.length; i++) {
+                if (i_Chars.indexOf(tenureVal.charAt(i)) != -1) {
+                    alert("Please enter Tenure of deposit in numbers. No Decimals allowed");
+                    document.fdMatVal.tenure.value = "";
+                    document.fdMatVal.tenure.focus();
+                    return false;
+                }
+            }
+
+
+            var tenurePeriodVal = document.fdMatVal.tenurePeriod.value;
+            var frequencyVal = document.fdMatVal.frequency.value;
+
+            //Get computable values
+            principalVal = parseFloat(principalVal);
+            interestVal = parseFloat(interestVal);
+            tenureVal = parseFloat(tenureVal);
+            tenurePeriodVal = parseFloat(tenurePeriodVal);
+            frequencyVal = parseFloat(frequencyVal);
+
+            var retStr = calMatVal(principalVal, interestVal, tenureVal, tenurePeriodVal, frequencyVal);
+
+
+            document.getElementById("res_jl").style.display = 'none';
+            document.getElementById("res_rd").style.display = 'none';
+            //document.getElementById("res_fd").style.display = 'block';
+
+
+            res = "<div><span style='text-decoration:underline;'>Principal Amount:</span><br> Rs. " + principalVal + "<div>";
+            res += "<div><span  style='text-decoration:underline;'>Maturity Amount:</span><br> Rs. " + retStr + "<div>";
+            res += "<di><span  style='text-decoration:underline;'>Interest earned:</span><br> Rs. " + (retStr - principalVal).toFixed(2) + "<div>";
+            var myElement = document.getElementById("myList");
+            myElement.innerHTML = res;
+            //document.getElementById("response_div").style.display = "block";
+            modal.style.display = "block";
+            return (false);
+        }
+
+        function calMatVal(principalVal, interestVal, tenureVal, tenurePeriodVal, frequencyVal) {
+            var fdMatVal = 0;
+            var retStr = "";
+            if (tenureVal <= 90 && tenurePeriodVal == 365) {
+                frequencyVal = 0;
+            }
+
+            if (frequencyVal == 0)	//	Simple interest
+            {
+                fdMatVal = principalVal * (1 + ((interestVal * tenureVal) / (tenurePeriodVal * 100)));
+                //retStr = retStr + "Simple Interest = " +fdMatVal;
+            }
+            else	//	Compound interest
+            {
+                var val1 = 1 + interestVal / (100 * frequencyVal);
+                var val2 = (tenureVal * frequencyVal / tenurePeriodVal);
+                var val3 = 0;
+
+                val3 = Math.pow(val1, val2);
+                fdMatVal = (principalVal * val3);
+                //retStr = retStr + "Compund Interest = " +fdMatVal;
+            }
+
+            retStr = retStr + fdMatVal.toFixed(2);
+            return (retStr);
+        }
+
+        function reset_fdcalcfrm() {
+
+
+            document.getElementById("fdMatVal").reset();
+            return false;
+        }
+
+        function checkNeg(obj) {
+            if (isNaN(obj.value.charAt(0))) {
+                obj.value = "";
+                obj.focus();
+                obj.value = "";
+            }
+
+            if (obj.value.charAt(0) == "-") {
+                obj.value = "";
+                alert("Negative Numbers are not Valid");
+                obj.focus();
+                obj.value = "";
+            }
+
+            if (obj.value.indexOf(" ", 0) != -1) {
+                obj.value = "";
+                alert("No Spaces Allowed");
+                obj.focus();
+                obj.value = "";
+            }
+        }
+        //-->
+    </script>
+
+    <script language="JavaScript">
+        function calulateMaturityjl() {
+
+
+            var i_Chars = ".";
+            var princ = document.jlMatVal.principalMA.value;
+
+            if (princ == "" || isNaN(princ) || (parseFloat(princ) <= 0)) {
+                alert("Please enter a valid Loan value");
+                document.jlMatVal.principalMA.value = "";
+                document.jlMatVal.principalMA.focus();
+                return (false);
+            }
+
+            for (var i = 0; i < princ.length; i++) {
+
+                if (i_Chars.indexOf(princ.charAt(i)) != -1) {
+                    alert("Please enter Loan value in numbers. No Decimals allowed");
+                    document.jlMatVal.principalMA.value = "";
+                    document.jlMatVal.principalMA.focus();
+                    return false;
+                }
+
+            }
+
+            var interestVal = document.jlMatVal.interestMA.value;
+
+            if (interestVal == "" || isNaN(interestVal) || (parseFloat(interestVal) <= 0) || (parseFloat(interestVal) > 100)) {
+                alert("Please enter valid Rate of Interest");
+                document.jlMatVal.interestMA.value = "";
+                document.jlMatVal.interestMA.focus();
+                return false;
+            }
+
+
+            //var intr = document.jlMatVal.interestMA.value/1200;
+            var intr = document.jlMatVal.interestMA.value;
+
+
+            var term = document.jlMatVal.timeMA.value;
+            //var tenureVal = document.jlMatVal.tenure.value;
+            if (term == "" || isNaN(term) || (parseFloat(term) <= 0)) {
+                alert("Please enter Period");
+                document.jlMatVal.timeMA.value = "";
+                document.jlMatVal.timeMA.focus();
+                return false;
+            }
+
+            for (var i = 0; i < term.length; i++) {
+                if (i_Chars.indexOf(term.charAt(i)) != -1) {
+                    alert("Please enter Tenure of deposit in numbers. No Decimals allowed");
+                    document.jlMatVal.timeMA.value = "";
+                    document.jlMatVal.timeMA.focus();
+                    return false;
+                }
+            }
+
+            princ = parseFloat(princ);
+            intr = parseFloat(intr);
+            term = parseFloat(term);
+
+            // var final_amt = princ * intr / (1 - (Math.pow(1/(1 + intr), term)));
+            var final_amt = princ * intr / 1200;
+            //alert(princ * intr / (1 - (Math.pow(1/(1 + intr), term))));
+
+            /*var princ = document.calc.loan.value;
+            var term  = document.calc.months.value;
+            var intr   = document.calc.rate.value / 1200;*/
+
+            //document.calc.pay.value = princ * intr / (1 - (Math.pow(1/(1 + intr), term)));
+            //document.getElementById("res_jl").style.display = 'block';
+            document.getElementById("res_rd").style.display = 'none';
+            document.getElementById("res_fd").style.display = 'none';
+
+            //document.getElementById("mat_valjl").innerHTML = "<strong><span style='color:green;font-size:20px;float:right;'>Rs. "+final_amt.toFixed(2)+"<span></strong>";
+
+
+            res2 = "<div><span style='text-decoration:underline;'>Monthly Payable:</span><br> Rs. " + final_amt.toFixed(2) + "<div><br>";
+            var myElement = document.getElementById("myList");
+            myElement.innerHTML = res2;
+            modal.style.display = "block";
+            return (false);
+
+        }
+
+        // payment = principle * monthly interest/(1 - (1/(1+MonthlyInterest)*Months))
+
+        // -->
+
+        // modal
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+    <script type="module"
+        src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920"
+        integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA=="
+        data-cf-beacon='{"version":"2024.11.0","token":"55b70e43c93242539d862c77897ad74b","r":1,"spa":2}'
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
