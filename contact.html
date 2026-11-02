@@ -125,13 +125,13 @@
                                     <a href="mailto:mmbfund94@gmail.com">mmbfund94@gmail.com</a>
                                 </div>
                             </li>
-                           <li>
-    <div class="contact-info-box">
-        <span class="icon lnr-icon-clock"></span>
-        <span class="title">Working Hours</span>
-        Mon - Sat 8:00 AM - 6:30 PM, Sunday - CLOSED
-    </div>
-</li>
+                            <li>
+                                <div class="contact-info-box">
+                                    <span class="icon lnr-icon-clock"></span>
+                                    <span class="title">Working Hours</span>
+                                    Mon - Sat 8:00 AM - 6:30 PM, Sunday - CLOSED
+                                </div>
+                            </li>
                         </ul>
                         <ul class="social-links">
                             <li><a href="#"><i class="fab fa-x-twitter"></i></a></li>
@@ -228,10 +228,16 @@
                                     </div>
                                     <div class="text">
                                         <h5 style="margin-bottom: 5px;">Head Office</h5>
-                                        <p style="margin: 0; color:#555;">Satyasantanam Complex, GST Road, Kooteripattu,
-                                            Tindivanam - 604302</p>
-                                        <p style="margin: 10px 0 0 0; color:#555;"><strong>Branch:</strong> No. 153, 2nd
-                                            Floor, Jawaharlal Nehru Street, Tindivanam – 604001</p>
+                                        <p style="margin: 0; color:#555;">
+                                            No. 153, 2nd Floor,
+                                            Jawaharlal Nehru Street,
+                                            Tindivanam – 604001
+                                        </p>
+                                        <p style="margin: 10px 0 0 0; color:#555;"><b>Branch:</b>
+                                            Satyasantanam Complex,
+                                            GST Road, Kooteripattu,
+                                            Tindivanam – 604302
+                                        </p>
                                     </div>
                                 </li>
                                 <li style="display: flex; margin-bottom: 30px;">
@@ -278,37 +284,50 @@
                                 <h6 class="sub-title">Send a Message</h6>
                                 <h2 class="title">Drop Us A <span>Line</span></h2>
                             </div>
-                            <form action="#" method="post" id="contact-form">
+                            <form action="#" method="post" id="contact-form" novalidate>
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <input type="text" name="name" class="form-control" placeholder="Your Full Name"
-                                            required style="padding: 15px; border: 1px solid #eee; border-radius: 5px;">
+                                            style="padding: 15px; border: 1px solid #eee; border-radius: 5px;">
+                                        <small class="error-message"></small>
                                     </div>
+
                                     <div class="col-md-6 mb-4">
                                         <input type="email" name="email" class="form-control"
-                                            placeholder="Email Address" required
+                                            placeholder="Email Address"
                                             style="padding: 15px; border: 1px solid #eee; border-radius: 5px;">
+                                        <small class="error-message"></small>
                                     </div>
+
                                     <div class="col-md-6 mb-4">
-                                        <input type="text" name="phone" class="form-control" placeholder="Phone Number"
-                                            required style="padding: 15px; border: 1px solid #eee; border-radius: 5px;">
+                                        <input type="tel" name="phone" class="form-control" placeholder="Phone Number"
+                                            maxlength="10"
+                                            style="padding: 15px; border: 1px solid #eee; border-radius: 5px;">
+                                        <small class="error-message"></small>
                                     </div>
+
                                     <div class="col-md-6 mb-4">
                                         <input type="text" name="subject" class="form-control" placeholder="Subject"
-                                            required style="padding: 15px; border: 1px solid #eee; border-radius: 5px;">
+                                            style="padding: 15px; border: 1px solid #eee; border-radius: 5px;">
+                                        <small class="error-message"></small>
                                     </div>
+
                                     <div class="col-12 mb-4">
                                         <textarea name="message" class="form-control" rows="6"
-                                            placeholder="Your Message or Inquiry..." required
+                                            placeholder="Your Message or Inquiry..."
                                             style="padding: 15px; border: 1px solid #eee; border-radius: 5px;"></textarea>
+                                        <small class="error-message"></small>
                                     </div>
+
                                     <div class="col-12">
                                         <button type="submit" class="btn-one"
-                                            style="border: none; cursor: pointer; padding: 15px 40px; width: 100%;">Submit
-                                            Message</button>
+                                            style="border: none; cursor: pointer; padding: 15px 40px; width: 100%;">
+                                            Submit Message
+                                        </button>
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </div>
@@ -473,6 +492,140 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.getElementById("contact-form");
+
+            const fields = {
+                name: form.querySelector('[name="name"]'),
+                email: form.querySelector('[name="email"]'),
+                phone: form.querySelector('[name="phone"]'),
+                subject: form.querySelector('[name="subject"]'),
+                message: form.querySelector('[name="message"]')
+            };
+
+            function validateField(field) {
+
+                const value = field.value.trim();
+                let error = "";
+
+                switch (field.name) {
+
+                    case "name":
+                        if (!value) {
+                            error = "Please enter your full name.";
+                        } else if (value.length < 3) {
+                            error = "Name must contain at least 3 characters.";
+                        } else if (!/^[a-zA-Z\s.'-]+$/.test(value)) {
+                            error = "Please enter a valid name.";
+                        }
+                        break;
+
+                    case "email":
+                        if (!value) {
+                            error = "Please enter your email address.";
+                        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
+                            error = "Please enter a valid email address.";
+                        }
+                        break;
+
+                    case "phone":
+                        if (!value) {
+                            error = "Please enter your phone number.";
+                        } else if (!/^[6-9]\d{9}$/.test(value)) {
+                            error = "Please enter a valid 10-digit mobile number.";
+                        }
+                        break;
+
+                    case "subject":
+                        if (!value) {
+                            error = "Please enter the subject.";
+                        } else if (value.length < 3) {
+                            error = "Subject must contain at least 3 characters.";
+                        }
+                        break;
+
+                    case "message":
+                        if (!value) {
+                            error = "Please enter your message.";
+                        } else if (value.length < 10) {
+                            error = "Message must contain at least 10 characters.";
+                        }
+                        break;
+                }
+
+                const errorElement = field.parentElement.querySelector(".error-message");
+
+                errorElement.textContent = error;
+
+                field.classList.toggle("is-invalid", !!error);
+                field.classList.toggle("is-valid", !error && value !== "");
+
+                return !error;
+            }
+
+            // Validate fields while typing
+            Object.values(fields).forEach(field => {
+
+                field.addEventListener("input", function () {
+                    validateField(field);
+                });
+
+                field.addEventListener("blur", function () {
+                    if (field.value.trim() !== "") {
+                        validateField(field);
+                    }
+                });
+
+            });
+
+            // Form submission
+            form.addEventListener("submit", function (e) {
+
+                e.preventDefault();
+
+                let isValid = true;
+
+                Object.values(fields).forEach(field => {
+                    if (!validateField(field)) {
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) {
+                    const firstInvalid = form.querySelector(".is-invalid");
+                    if (firstInvalid) {
+                        firstInvalid.focus();
+                    }
+                    return;
+                }
+
+                // WhatsApp message
+                const whatsappNumber = "919087232134";
+
+                const message = `
+Hello, I have a new enquiry.
+
+Name: ${fields.name.value.trim()}
+Email: ${fields.email.value.trim()}
+Phone: ${fields.phone.value.trim()}
+Subject: ${fields.subject.value.trim()}
+
+Message:
+${fields.message.value.trim()}
+            `;
+
+                const whatsappURL =
+                    "https://wa.me/" + whatsappNumber +
+                    "?text=" + encodeURIComponent(message);
+
+                window.open(whatsappURL, "_blank");
+
+            });
+
         });
     </script>
 </body>

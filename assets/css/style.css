@@ -294,11 +294,18 @@ ul {
 b,
 strong {
     color: #333;
-    font-weight: var(--body-font-weight-bold);
+    font-weight: bold;
 }
 
 iframe {
     border: none !important;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 13px;
+    display: block;
+    margin-top: 5px;
 }
 
 /*
